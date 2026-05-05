@@ -74,5 +74,27 @@ This project is configured for easy deployment to Vercel.
    vercel
    ```
 
+## Mobile App (Android APK)
+
+The project includes a Kivy-based mobile interface.
+
+### Build APK
+
+To build the Android APK, you need to have `buildozer` installed along with its dependencies (Android SDK, NDK, etc.).
+
+```bash
+buildozer android debug
+```
+
+The generated APK will be in the `bin/` directory.
+
+### Run locally
+
+You can test the mobile UI on your desktop if you have Kivy installed:
+
+```bash
+python src/mobile/main.py
+```
+
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
