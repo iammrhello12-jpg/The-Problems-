@@ -1,0 +1,15 @@
+intent,pattern,response
+greeting,hello,Hello! How can I help you today?
+greeting,hi,Hi there! What can I do for you?
+greeting,hey,Hey! How's it going?
+goodbye,bye,Goodbye! Have a great day!
+goodbye,see you,See you later!
+goodbye,quit,Talk to you soon!
+help,help,I can answer simple questions. Try greeting me!
+help,what can you do,I am an AI agent designed to help you with basic tasks.
+help,commands,I currently support greetings and general help.
+thanks,thanks,You're welcome!
+thanks,thank you,Glad I could help!
+thanks,awesome,Anytime!
+name,what is your name,I am an AI agent created by Jules.
+name,who are you,I am your helpful assistant.
