@@ -60,5 +60,19 @@ Run the container:
 docker run -p 8000:8000 ai-agent
 ```
 
+## Deployment with Vercel
+
+This project is configured for easy deployment to Vercel.
+
+1. Install the Vercel CLI:
+   ```bash
+   npm i -g vercel
+   ```
+
+2. Deploy:
+   ```bash
+   vercel
+   ```
+
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

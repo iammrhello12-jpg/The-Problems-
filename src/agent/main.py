@@ -15,13 +15,19 @@ class Response(BaseModel):
     response: str
 
 agent = SimpleAgent()
-model_path = "model.joblib"
+
+# Define paths relative to this file
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# model.joblib is expected to be in the root directory relative to src/agent
+ROOT_DIR = os.path.dirname(os.path.dirname(BASE_DIR))
+model_path = os.path.join(ROOT_DIR, "model.joblib")
+data_path = os.path.join(ROOT_DIR, "data", "intents.csv")
+static_dir = os.path.join(BASE_DIR, "static")
 
 if os.path.exists(model_path):
     agent.load(model_path)
 else:
     # Fallback for development if model isn't trained yet
-    data_path = "data/intents.csv"
     if os.path.exists(data_path):
         agent.train(data_path)
 
@@ -35,7 +41,6 @@ async def health():
     return {"status": "healthy"}
 
 # Serve static files
-static_dir = os.path.join(os.path.dirname(__file__), "static")
 if os.path.exists(static_dir):
     app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
