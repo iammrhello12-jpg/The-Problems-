@@ -26,7 +26,8 @@ def test_model_prediction():
 def test_api_root():
     response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == {"message": "AI Agent is online", "status": "ok"}
+    assert "text/html" in response.headers["content-type"]
+    assert "AI Agent Assistant" in response.text
 
 def test_api_health():
     response = client.get("/health")

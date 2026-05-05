@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 import os
 from agent.model import SimpleAgent
@@ -23,10 +25,6 @@ else:
     if os.path.exists(data_path):
         agent.train(data_path)
 
-@app.get("/")
-async def root():
-    return {"message": "AI Agent is online", "status": "ok"}
-
 @app.post("/chat", response_model=Response)
 async def chat(message: Message):
     result = agent.predict(message.text)
@@ -35,3 +33,15 @@ async def chat(message: Message):
 @app.get("/health")
 async def health():
     return {"status": "healthy"}
+
+# Serve static files
+static_dir = os.path.join(os.path.dirname(__file__), "static")
+if os.path.exists(static_dir):
+    app.mount("/static", StaticFiles(directory=static_dir), name="static")
+
+@app.get("/")
+async def read_index():
+    index_path = os.path.join(static_dir, "index.html")
+    if os.path.exists(index_path):
+        return FileResponse(index_path)
+    return {"message": "AI Agent is online", "status": "ok"}
